@@ -1,4 +1,4 @@
-package model.humanClass;
+package model.animalClass;
 
 /**
  * Gender

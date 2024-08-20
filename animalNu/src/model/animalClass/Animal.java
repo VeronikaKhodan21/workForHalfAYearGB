@@ -1,4 +1,4 @@
-package model.humanClass;
+package model.animalClass;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
@@ -7,20 +7,17 @@ import java.util.List;
 
 import model.livingBegin.LivingBeingInterf;
 
-public class Human  implements LivingBeingInterf<Human>, Comparable<Human>{
+public class Animal implements LivingBeingInterf<Animal>, Comparable<Animal>{
     private long id;
     private String name;
-     private Gender gender;
+    private Gender gender;
     private LocalDate birtDate;
-    private LocalDate deatDate;
-    private Human mother;
-    private Human father;
-    private List<Human> children;
-    private Human spouse;
+    private List<String> commands;
+    private TypeAnimal type;
     /**
      * 
      */
-    public Human(String name,  Gender gender, LocalDate birtDate, LocalDate deatDate, Human mother, Human father){
+    public Animal(String name,  Gender gender, LocalDate birtDate, TypeAnimal type, ){
         id = -1;
         this.name = name;
         this.gender= gender;
