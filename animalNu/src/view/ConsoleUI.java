@@ -4,8 +4,7 @@ package view;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import model.humanClass.Gender;
-import model.humanClass.Human;
+import model.animalClass.*;
 import presenter.Presenter;
 
 
@@ -19,7 +18,7 @@ public class ConsoleUI implements View {
     private Menu mainMenu;
     public ConsoleUI() {
         this.scanner = new Scanner(System.in);
-        presenter = new Presenter<Human>(this);
+        presenter = new Presenter<Animal>(this);
         work = true;
         mainMenu = new Menu(this);
     }
@@ -53,6 +52,10 @@ public class ConsoleUI implements View {
         return choice;
     }
 
+    private void addCommandAnimal(){
+        presenter.addCommandAnimal();
+    }
+
     private static void hello() {
         System.out.println("Привет");
     }
@@ -64,7 +67,7 @@ public class ConsoleUI implements View {
         presenter.sortByGenger();
     }
     public void getFamilyTree() {
-        presenter.getFamilyTree();
+        presenter.getAnimalNursery();
     }
 
     public void sortByDateBirth() {
@@ -74,21 +77,13 @@ public class ConsoleUI implements View {
     public void sortByAge() {
         presenter.sortByAge();
     }
-    private LocalDate setDeatDateBecas(){
-        System.out.println("Вам известна дата смерти? \"да\" или \"нет\": ");
-        if (scanner.nextLine().equalsIgnoreCase("да")) {
-            return  setDateOfDead();
-        } else {
-            return null;
-        }
-    }
-    public void addNewSubjectToFamilyTree() {
+    public void addNewSubjectToAnimalNursery() {
         String name = setNameForNewSubject();
         LocalDate birthDate = setDateOfBirth();
-        LocalDate deadDate = setDeatDateBecas();
         Gender gender = setGender();
+        TypeAnimal type = setTypeAnimal();
 
-        presenter.addToFamilyTree(name, birthDate, deadDate, gender);
+        presenter.addAnimalNursery(name, birthDate, gender, type);
     }
 
     private Gender setGender() {
@@ -97,18 +92,6 @@ public class ConsoleUI implements View {
         Gender gender = Gender.Male;
         if (strGender.toLowerCase().contains("fe")) gender = Gender.Female;
         return gender;
-    }
-
-    private LocalDate setDateOfDead() {
-        System.out.println("Введите дату смерти: ");
-        System.out.print("год смерти: ");
-        int deadYear = Integer.parseInt(scanner.nextLine());
-        System.out.print("месяц смерти: ");
-        int deadMonth = Integer.parseInt(scanner.nextLine());
-        System.out.print("день смерти :");
-        int deadDay = Integer.parseInt(scanner.nextLine());
-        LocalDate deadDate = LocalDate.of(deadYear, deadMonth, deadDay);
-        return deadDate;
     }
 
     private LocalDate setDateOfBirth() {
@@ -122,7 +105,20 @@ public class ConsoleUI implements View {
         LocalDate dateOfBirth = LocalDate.of(year, month, day);
         return dateOfBirth;
     }
-
+    private TypeAnimal setTypeAnimal(){
+        System.out.println("Введите вид животного: ");
+        String strTypeAnimal = scanner.nextLine();
+        return definitionTypeAnimal(strTypeAnimal);
+    }
+    private TypeAnimal definitionTypeAnimal(String strTypeAnimal){
+        if (strTypeAnimal.toLowerCase().contains("dog"))  return TypeAnimal.Dog;
+        if (strTypeAnimal.toLowerCase().contains("cat"))  return TypeAnimal.Cat;
+        if (strTypeAnimal.toLowerCase().contains("camel"))  return TypeAnimal.Camel;
+        if (strTypeAnimal.toLowerCase().contains("donkey"))  return TypeAnimal.Donkey;
+        if (strTypeAnimal.toLowerCase().contains("hamster"))  return TypeAnimal.Hamster;
+        if (strTypeAnimal.toLowerCase().contains("horse"))  return TypeAnimal.Horse;
+        return TypeAnimal.Camel;
+    }
     private String setNameForNewSubject() {
         System.out.println("Введите имя: ");
         String name = scanner.nextLine();

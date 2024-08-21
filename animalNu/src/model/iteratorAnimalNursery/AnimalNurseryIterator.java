@@ -1,13 +1,13 @@
-package model.iteratorFamilyTree;
+package model.iteratorAnimalNursery;
 
 
 import java.util.Iterator;
 import java.util.List;
 
-public class FamilyLivingIterator<E> implements Iterator<E>   {
+public class AnimalNurseryIterator<E> implements Iterator<E>   {
         private int index;
         private List<E> livingList;
-        public FamilyLivingIterator(List<E> livList){
+        public AnimalNurseryIterator(List<E> livList){
             this.livingList = livList;
         }
         @Override

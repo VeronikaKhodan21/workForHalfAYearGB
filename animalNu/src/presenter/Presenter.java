@@ -1,12 +1,9 @@
 package presenter;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 
-import model.familyTree.FamilyTree;
-import model.humanClass.Gender;
-import model.humanClass.Human;
+import model.animalClass.*;
 import model.livingBegin.LivingBeingInterf;
 import model.service.Service;
 import view.View;
@@ -20,23 +17,25 @@ public class Presenter<E extends LivingBeingInterf> {
         this.view = view;
         service = new Service();
     }
-    public void addToFamilyTree(String name, LocalDate dob, LocalDate dod, Gender gender) {
-        service.addToFamilyTree(name, gender,dob, dod );
+    public void addAnimalNursery(String name, LocalDate dob, Gender gender, TypeAnimal type) {
+        service.addToAnimalNursery(name, dob, gender, type);
     }
-    public void getFamilyTree() {
-        List<Human> res = service.getFamilyTreeList();
-        for (Human e : res) {
+    public void addCommandAnimal(String command, int id){
+        service.addCommandAnimal(command, service.);
+    }
+    public void getAnimalNursery() {
+        List<Animal> res = service.getAnimalNurseryList();
+        for (Animal e : res) {
             view.getAnswer("\n"+e.toString());
         }
-        
     }
-    private void printFamilyTree(List<Human> familyTree){
-        for (Human e : familyTree) {
+    private void printFamilyTree(List<Animal> animalNursery){
+        for (Animal e : animalNursery) {
             view.getAnswer("\n"+e.toString());
         }
     }
     public void sortByName() {
-        List<Human> res = service.sortByName();
+        List<Animal> res = service.sortByName();
         this.printFamilyTree(res);
     }
     public void writeTreeFamily(String fileName) {
@@ -60,15 +59,15 @@ public class Presenter<E extends LivingBeingInterf> {
         }
     }
     public void sortByDateBirth() {
-        List<Human> res =service.sortByBirthDate();
+        List<Animal> res =service.sortByBirthDate();
         this.printFamilyTree(res);
     }
     public void sortByGenger() {
-        List<Human> res =service.sortByGenger();
+        List<Animal> res =service.sortByGenger();
         this.printFamilyTree(res);
     }
     public void sortByAge() {
-        List<Human> res = service.sortByBirthDate();
+        List<Animal> res = service.sortByBirthDate();
         this.printFamilyTree(res);
     }
 }

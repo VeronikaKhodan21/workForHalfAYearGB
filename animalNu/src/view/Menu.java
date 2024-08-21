@@ -10,7 +10,7 @@ public class Menu {
 
     public Menu(ConsoleUI consoleUI) {
         this.commands = new ArrayList<>();
-        commands.add(new AddLivingBegin(consoleUI));
+        commands.add(new AddAnimalNursery(consoleUI));
         commands.add(new GetFamilyTree(consoleUI));
         commands.add(new SortByName(consoleUI));
         commands.add(new SortByBirthDate(consoleUI));

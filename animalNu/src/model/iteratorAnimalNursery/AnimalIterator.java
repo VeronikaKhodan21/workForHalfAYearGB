@@ -1,13 +1,13 @@
-package model.iteratorFamilyTree;
+package model.iteratorAnimalNursery;
 import java.util.Iterator;
 import java.util.List;
 
-import model.humanClass.Human;
+import model.animalClass.*;
 
-public class FamilyTreeIterator implements Iterator<Human>   {
+public class AnimalIterator implements Iterator<Animal>   {
     private int index;
-    private List<Human> humanList;
-    public FamilyTreeIterator(List<Human> humans){
+    private List<Animal> humanList;
+    public AnimalIterator(List<Animal> humans){
         this.humanList = humans;
     }
     @Override
@@ -15,7 +15,7 @@ public class FamilyTreeIterator implements Iterator<Human>   {
         return index < humanList.size();
     }
     @Override
-    public Human next(){
+    public Animal next(){
         return humanList.get(index++);
     }
 }
