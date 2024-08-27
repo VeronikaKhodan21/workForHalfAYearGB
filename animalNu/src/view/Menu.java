@@ -2,7 +2,6 @@ package view;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import view.party.*;
 
 public class Menu {
@@ -11,13 +10,14 @@ public class Menu {
     public Menu(ConsoleUI consoleUI) {
         this.commands = new ArrayList<>();
         commands.add(new AddAnimalNursery(consoleUI));
-        commands.add(new GetFamilyTree(consoleUI));
+        commands.add(new GetAnimalNursery(consoleUI));
         commands.add(new SortByName(consoleUI));
         commands.add(new SortByBirthDate(consoleUI));
         commands.add(new SortByAge(consoleUI));
         commands.add(new SortByGenger(consoleUI));
         commands.add(new WriteTreeInFile(consoleUI));
         commands.add(new ReadTreeInFile(consoleUI));
+        commands.add(new AddCommandAnimal(consoleUI));
         commands.add(new Finish(consoleUI));
     }
 

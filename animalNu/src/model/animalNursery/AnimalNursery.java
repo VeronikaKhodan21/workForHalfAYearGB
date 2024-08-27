@@ -53,8 +53,10 @@ public class AnimalNursery<E extends LivingBeingInterf<E>> implements Serializab
         return null;
 
     }
-    
-    private boolean checkId(long id){
+    public int size(){
+        return livingList.size();
+    }
+    private  boolean checkId(long id){
         return id < count && id >= 0;
     }
     public E getById(long id){

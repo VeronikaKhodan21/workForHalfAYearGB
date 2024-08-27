@@ -29,6 +29,9 @@ public class Service{
         if (animal != null) return animal;
         return null;
     }
+    public int checkSuzeNursery(){
+        return nursery.size();
+    }
     public  Animal getById(int id){
         return nursery.getById(new Long(id));
     }

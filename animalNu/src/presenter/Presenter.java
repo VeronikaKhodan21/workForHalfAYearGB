@@ -21,7 +21,7 @@ public class Presenter<E extends LivingBeingInterf> {
         service.addToAnimalNursery(name, dob, gender, type);
     }
     public void addCommandAnimal(String command, int id){
-        service.addCommandAnimal(command, service.);
+        service.addCommandAnimal(command, service.getById(id));
     }
     public void getAnimalNursery() {
         List<Animal> res = service.getAnimalNurseryList();
@@ -29,14 +29,17 @@ public class Presenter<E extends LivingBeingInterf> {
             view.getAnswer("\n"+e.toString());
         }
     }
-    private void printFamilyTree(List<Animal> animalNursery){
+    private void printAnimalNursery(List<Animal> animalNursery ){
         for (Animal e : animalNursery) {
             view.getAnswer("\n"+e.toString());
         }
     }
+    public int checkSuzeNursery(){
+        return service.checkSuzeNursery();
+    }
     public void sortByName() {
         List<Animal> res = service.sortByName();
-        this.printFamilyTree(res);
+        this.printAnimalNursery(res);
     }
     public void writeTreeFamily(String fileName) {
         //service.treeInFile(fileName);
