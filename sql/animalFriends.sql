@@ -1,5 +1,5 @@
 USE HumanFriends;
-# USE Human_friends;
+
 CREATE TABLE animal_clas
 (
 	id INT not null PRIMARY KEY, 

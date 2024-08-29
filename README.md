@@ -30,5 +30,16 @@
 ![картинка 6](images/image6.png)
 ![картинка 7](images/image7.png)
 
-5. История команд из терминала Ubuntu
+5. [История команд](https://github.com/VeronikaKhodan21/workForHalfAYearGB/blob/main/HistoryCommandsUbuntu.md) из терминала Ubuntu
+
 ## ООП
+6. Диаграмма классов
+
+![диаграмма классов](images/image8.png)
+
+7. Подробно про задание читайте [тут](https://github.com/VeronikaKhodan21/workForHalfAYearGB/blob/main/sql/animalFriends.sql)
+ 
+## ООП И JAVA
+
+9. И 10.
+- Программа-реестр домашних животных
