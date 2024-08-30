@@ -24,6 +24,7 @@ public class AnimalNursery<E extends LivingBeingInterf<E>> implements Serializab
             return false;
         }if (!livingList.contains(e)) {
             livingList.add(e);
+            e.setId(count++);
             return true;
         } 
         return false;

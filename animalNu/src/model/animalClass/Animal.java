@@ -24,6 +24,7 @@ public class Animal implements LivingBeingInterf<Animal>, Comparable<Animal>{
         this.type = type;        
         this.commands = new ArrayList<String>();
     }
+    public void setId(long id){this.id = id;}
     public void setGender(Gender gender){this.gender = gender;}
     public void setName(String name){this.name = name;}
     public TypeAnimal getTypeAnimal(){return type;}
@@ -32,7 +33,7 @@ public class Animal implements LivingBeingInterf<Animal>, Comparable<Animal>{
     public boolean addCommands(String command){
         return  commands.add(command);  
     }
-    
+    // public  int  getId(){return id ;}
     public int getAge(){
         return getPeriod(birtDate, LocalDate.now());
     }
@@ -53,7 +54,6 @@ public class Animal implements LivingBeingInterf<Animal>, Comparable<Animal>{
     public String getName(){return name;}
     public long getId(){return id;}
     public LocalDate getBirtDate(){return birtDate;}
-    public void setId(long id){this.id = id;}
     public void setBirtDate(LocalDate birtDate){this.birtDate = birtDate;}
     @Override
     public String toString() {return getInfo(); }

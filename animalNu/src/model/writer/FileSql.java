@@ -4,7 +4,7 @@ import java.io.*;
 /**
  * FileHandler
  */
-public class FileHandler implements Writable{
+public class FileSql implements Writable{
     //private FileHandler(){}
      public boolean save(Serializable serializable, String fileName){
         try (ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream(fileName))){
