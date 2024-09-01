@@ -256,11 +256,7 @@ public class ConsoleUI implements View {
         System.out.print(text);
     }
 
-    public void writeTreeFamily(String fileName) {
-        presenter.writeTreeFamily(fileName);
-    }
-
-    public void readTreeFamily(String fileName) {
-        presenter.readTreeFamily(fileName);
+    public void readTreeFamily() {
+        presenter.readTreeFamily();
     }
 }

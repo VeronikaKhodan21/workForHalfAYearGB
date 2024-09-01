@@ -1,9 +1,8 @@
 package presenter;
 import java.time.LocalDate;
 import java.util.List;
-
-
 import model.animalClass.*;
+import model.animalNursery.AnimalNursery;
 import model.livingBegin.LivingBeingInterf;
 import model.service.Service;
 import view.View;
@@ -21,7 +20,7 @@ public class Presenter<E extends LivingBeingInterf> {
         service.addToAnimalNursery(name, dob, gender, type);
     }
     public void addCommandAnimal(String command, int id){
-        service.addCommandAnimal(command, service.getById(id));
+        service.addCommandAnimal(command, service.getById(id), id);
     }
     public void getAnimalNursery() {
         List<Animal> res = service.getAnimalNurseryList();
@@ -41,36 +40,28 @@ public class Presenter<E extends LivingBeingInterf> {
         List<Animal> res = service.sortByName();
         this.printAnimalNursery(res);
     }
-    public void writeTreeFamily(String fileName) {
-        //service.treeInFile(fileName);
-        if (service.treeInFile(fileName) ) {
-            view.getAnswer("Семья записана\n");
-        } else {
-            view.getAnswer("Семья не записана\n");
-        }
-    }
-    public void readTreeFamily(String fileName) {
-        
-        FamilyTree<Human> tree = service.treeInputFile(fileName); 
-        if (tree != null) {
+    
+    public void readTreeFamily() {
+        AnimalNursery<Animal> nursery = service.deSerializableToNursery();
+        if (nursery != null) {
             
-            for (Human human : tree) {
-                view.getAnswer("\n"+human.toString());
+            for (Animal animal : nursery) {
+                view.getAnswer("\n"+animal.toString());
             }
         } else {
-            view.getAnswer("Не удалось установить семью...");
+            view.getAnswer("Не удалось установить питомник...");
         }
     }
     public void sortByDateBirth() {
         List<Animal> res =service.sortByBirthDate();
-        this.printFamilyTree(res);
+        this.printAnimalNursery(res);
     }
     public void sortByGenger() {
         List<Animal> res =service.sortByGenger();
-        this.printFamilyTree(res);
+        this.printAnimalNursery(res);
     }
     public void sortByAge() {
         List<Animal> res = service.sortByBirthDate();
-        this.printFamilyTree(res);
+        this.printAnimalNursery(res);
     }
 }

@@ -21,7 +21,21 @@ public class Service{
         nursery.add(animal);
         return true;
     }
-    public boolean addCommandAnimal(String command, Animal animal){return animal.addCommands(command);}
+    public boolean addCommandAnimal(String command, Animal animal, int id){
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            try (Connection dbConnection = getConnection()) {
+                String SQLstr = "INSERT INTO pet_command (PetId, CommandId) SELECT ?, (SELECT Id FROM commands WHERE Command_name = ?)";
+                PreparedStatement prepSt = dbConnection.prepareStatement(SQLstr);
+                prepSt.setInt(1, id);
+                prepSt.setString(2, command);
+                prepSt.executeUpdate();
+            }
+        } catch (ClassNotFoundException | IOException | SQLException ex) {
+            throw new RuntimeException(ex.getMessage());
+        } 
+        return animal.addCommands(command);
+    }
     public Animal findByName(String name) {
         Animal  animal = nursery.getByName(name);
         if (animal != null) return animal;
@@ -37,10 +51,7 @@ public class Service{
 
                 prepSt.setString(1, animal.getName());
                 prepSt.setDate(2, Date.valueOf(animal.getBirtDate())); 
-                // prepSt.setInt(3, animal.getId());
-                // prepSt.set
-                prepSt.setDate(3, 
-                Gender gen = getGender(resultSet.getString(4));
+                prepSt.setInt(3, (int)animal.getId());
                 rows = prepSt.executeUpdate();
                 return rows;
             }
@@ -82,7 +93,8 @@ public class Service{
         }
     }*/
     // из базы данных
-    private AnimalNursery<Animal> deSerializableToTree() {
+
+    public AnimalNursery<Animal> deSerializableToNursery() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection dbConnection = getConnection()) {

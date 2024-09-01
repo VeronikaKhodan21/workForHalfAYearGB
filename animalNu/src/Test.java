@@ -1,11 +1,7 @@
-import java.time.LocalDate;
-
-import model.familyTree.FamilyTree;
-import model.humanClass.Gender;
-import model.humanClass.Human;
 import view.*;
 
 public class Test {
+    /* 
     public static FamilyTree<Human> TestTreeGo(){
         FamilyTree<Human> tree = new FamilyTree();
         Human vana = new Human("Ваня", Gender.Male, LocalDate.of(1991, 3, 22));
@@ -23,8 +19,13 @@ public class Test {
         vlad.addChild(vana);
         tree.add(vlad);
         return tree;
-    }
+    }*/
+    /* 
     public static void main(String[] args) {
+        View view = new ConsoleUI();
+        view.start();
+    }*/
+    public static void main(String[] args){
         View view = new ConsoleUI();
         view.start();
     }
