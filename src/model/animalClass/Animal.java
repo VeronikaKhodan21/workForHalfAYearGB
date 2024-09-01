@@ -42,11 +42,14 @@ public class Animal implements LivingBeingInterf<Animal>, Comparable<Animal>{
         return diff.getYears();
     }
     public String getCommands(){
+        if(commands == null){
+            return "Животное пока-что ничего не умеет...";
+        }else{
         String str= new String(commands.get(0));
         for (int i = 1; i <= commands.size() ; i++) {
            str = str + ", "+ commands.get(i);
         }
-        return str;
+        return str;}
     }
     public List<String> getCommandsList(){
         return this.commands;

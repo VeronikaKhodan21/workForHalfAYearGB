@@ -1,8 +1,6 @@
 package model.sortFamily;
 
 import java.util.Comparator;
-
-import model.humanClass.Human;
 import model.livingBegin.LivingBeingInterf;
 
 public class ByGengerSort<E extends LivingBeingInterf> implements Comparator<E>{

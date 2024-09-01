@@ -4,12 +4,12 @@ import view.ConsoleUI;
 
 public class WriteTreeInFile extends Party{
      public WriteTreeInFile(ConsoleUI consoleUI) {
-        super("Записать семейное дерево в файл", consoleUI);
+        super("Получить питомник из базы данных", consoleUI);
     }
 
     @Override
     public void execute() {
-        String a = "HomeWorkJavaOOP/src/treeFamily.txt";
-        super.getConsoleUI().writeTreeFamily(a);
+        String a = "HomeWorkJavaOOP/src/animalNursery.txt";
+        super.getConsoleUI().readNursery(a);
     }
 }

@@ -16,7 +16,6 @@ public class Menu {
         commands.add(new SortByAge(consoleUI));
         commands.add(new SortByGenger(consoleUI));
         commands.add(new WriteTreeInFile(consoleUI));
-        commands.add(new ReadTreeInFile(consoleUI));
         commands.add(new AddCommandAnimal(consoleUI));
         commands.add(new Finish(consoleUI));
     }

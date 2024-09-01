@@ -102,7 +102,7 @@ public class ConsoleUI implements View {
         LocalDate birthDate = getDateBirht();
         Gender gender = setGender();
         TypeAnimal type = setTypeAnimal();
-
+        
         presenter.addAnimalNursery(name, birthDate, gender, type);
     }
     private int getYears(int year, Scanner scan){
@@ -115,6 +115,7 @@ public class ConsoleUI implements View {
                 if(checkYear(year)){
                     return year;
                 }
+                System.out.println("Животное не могло родиться в этот год");
                 return getYears(year, scan);
             } catch (NumberFormatException e) {
                 System.out.println("Вы ввели не число");
@@ -134,26 +135,14 @@ public class ConsoleUI implements View {
         System.out.println("Введите гендер (male или female): ");
         String strGender = scanner.nextLine();
         Gender gender = Gender.Male;
-        if (strGender.toLowerCase().contains("fe")) gender = Gender.Female;
-        if(strGender.toLowerCase().contains("me")) return gender;
+        if (strGender.toLowerCase().contains("female")) gender = Gender.Female;
+        if(strGender.toLowerCase().contains("male")) return gender;
         else{
             System.out.println("Вы ввели не гендер... /nПопробуйте еще раз");
             return setGender();
         } 
     }
-/* 
-    private LocalDate setDateOfBirth() {
-        System.out.println("Дата рождения ");
-        System.out.print("Год рождения: ");
-        int year = Integer.parseInt(scanner.nextLine());
-        System.out.print("Месяц рождения: ");
-        int month = Integer.parseInt(scanner.nextLine());
-        System.out.print("День рождения: ");
-        int day = Integer.parseInt(scanner.nextLine());
-        LocalDate dateOfBirth = LocalDate.of(year, month, day);
-        return dateOfBirth;
-    }
-    */
+
     private LocalDate getDateBirht(){
         Scanner scan = this.scanner;
         int b = 0;
@@ -255,8 +244,10 @@ public class ConsoleUI implements View {
     public void getAnswer(String text) {
         System.out.print(text);
     }
-
-    public void readTreeFamily() {
-        presenter.readTreeFamily();
+    public void writeTreeFamily(String fileName) {
+        presenter.writeTreeFamily(fileName);
+    }
+    public void readNursery(String filrName) {
+        presenter.readNursery(filrName);
     }
 }

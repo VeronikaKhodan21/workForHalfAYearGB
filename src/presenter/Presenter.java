@@ -20,7 +20,7 @@ public class Presenter<E extends LivingBeingInterf> {
         service.addToAnimalNursery(name, dob, gender, type);
     }
     public void addCommandAnimal(String command, int id){
-        service.addCommandAnimal(command, service.getById(id), id);
+        service.addCommandAnimal(command, service.getById(id));
     }
     public void getAnimalNursery() {
         List<Animal> res = service.getAnimalNurseryList();
@@ -41,8 +41,30 @@ public class Presenter<E extends LivingBeingInterf> {
         this.printAnimalNursery(res);
     }
     
-    public void readTreeFamily() {
-        AnimalNursery<Animal> nursery = service.deSerializableToNursery();
+    public void writeTreeFamily(String fileName) {
+        //service.treeInFile(fileName);
+        if (service.nurseryInFile(fileName) ) {
+            view.getAnswer("Семья записана\n");
+        } else {
+            view.getAnswer("Семья не записана\n");
+        }
+    }
+    /* 
+    public void readNursery(String fileName) {
+        
+        AnimalNursery<Animal> nursery = service.nurseryInputFile(fileName); 
+        if (nursery != null) {
+            
+            for (Animal animal : nursery) {
+                view.getAnswer("\n"+animal.toString());
+            }
+        } else {
+            view.getAnswer("Не удалось установить семью...");
+        }
+    }
+    */
+    public void readNursery(String filrName) {
+        AnimalNursery<Animal> nursery = service.nurseryInputFile(filrName);
         if (nursery != null) {
             
             for (Animal animal : nursery) {
