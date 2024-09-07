@@ -43,7 +43,7 @@
 
 9. И 10.
 - Программа-реестр домашних животных
-- Чтобы запустить код нужно скомпилировать [файл src/Main.java]()
-- Все данные про животных храняться в [nursery/Nursery.txt](), но файл в байтах поэтому вы ничего не прочитается
+- Чтобы запустить код нужно скомпилировать [файл src/Main.java](https://github.com/VeronikaKhodan21/workForHalfAYearGB/blob/main/src/Main.java)
+- Все данные про животных храняться в [nursery/Nursery.txt](https://github.com/VeronikaKhodan21/workForHalfAYearGB/blob/main/nursery/Nursery.txt), но файл в байтах поэтому вы ничего не прочитается
 - Так же я добавила сортировку по разным критериям
 - Чтобы работать с реестром сначало нужно его прочитать !!!ЭТО ВАЖНО!!!
