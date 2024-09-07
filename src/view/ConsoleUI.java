@@ -25,6 +25,7 @@ public class ConsoleUI implements View {
     public void start() {
         hello();
         while (work) {
+            System.err.println("\n\nЧтобы работать с питомником его нужно сначала прочитать из файла!");
             int choice = checkUserChoice(getUserChoice());
             if (choice != 0) mainMenu.execute(choice);
             else System.out.println("Вы ввели не коректные данные :(\nПожалуста введите команду снова");
@@ -49,13 +50,19 @@ public class ConsoleUI implements View {
         }
         return choice;
     }
-
+    private String getCommand(){
+        System.err.println("Введите команду которую умет животное");
+        String str = scanner.nextLine();
+        return str;
+    }
     public  void addCommandAnimal(){
         int id = getIdAnimalForCommand();
+        System.err.println("Введите команду которой научилось животное:\n");
         String command = scanner.nextLine();
             presenter.addCommandAnimal(command, id);
     }
     private boolean checkId(int id) {
+        //presenter.getAnimalNursery();
         if (id > presenter.checkSuzeNursery()) {
             return false;
         }
@@ -64,13 +71,16 @@ public class ConsoleUI implements View {
 
     private int getIdAnimalForCommand(){
         try{
-            System.out.println("Введите номер животного, которому хотите добавить команду:");
+            System.out.println("Введите номер животного, которому хотите добавить команду:\n");
+            presenter.getAnimalNursery();
+            System.err.println("\n");
             int id = Integer.parseInt(scanner.nextLine());
             if(checkId(id)){
-              return id;  
+             return id;   
             }
             System.out.println("Нету животного с таким id");
             return getIdAnimalForCommand();
+            
         }catch (NumberFormatException e) {
             System.out.println("Вы ввели не число");
             return getIdAnimalForCommand();
@@ -102,8 +112,9 @@ public class ConsoleUI implements View {
         LocalDate birthDate = getDateBirht();
         Gender gender = setGender();
         TypeAnimal type = setTypeAnimal();
+        String command = getCommand();
         
-        presenter.addAnimalNursery(name, birthDate, gender, type);
+        presenter.addAnimalNursery(name, birthDate, gender, type, command);
     }
     private int getYears(int year, Scanner scan){
         if (LocalDate.now().getYear() < year) {
@@ -212,10 +223,12 @@ public class ConsoleUI implements View {
     }
     private TypeAnimal setTypeAnimal(){
         System.out.println("Введите вид животного: ");
+        System.out.println("Cat/Dog/Hamster/Donkey/Camel/Horse");
         String strTypeAnimal = scanner.nextLine();
         TypeAnimal typ = definitionTypeAnimal(strTypeAnimal);
         if(typ == null){
             System.out.println("Такого животного нету или вы ввели не типи животного");
+            System.out.println("Проверте правельно ли вы ввели тип животного \nЭто нужно зделат на английском");
             return setTypeAnimal();
         }
         return typ;
@@ -244,8 +257,8 @@ public class ConsoleUI implements View {
     public void getAnswer(String text) {
         System.out.print(text);
     }
-    public void writeTreeFamily(String fileName) {
-        presenter.writeTreeFamily(fileName);
+    public void writeNursery(String fileName) {
+        presenter.writeNursery(fileName);
     }
     public void readNursery(String filrName) {
         presenter.readNursery(filrName);

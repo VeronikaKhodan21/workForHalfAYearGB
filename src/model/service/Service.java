@@ -11,12 +11,12 @@ public class Service{
 
     public Service(AnimalNursery<Animal> nursery) {this.nursery = nursery;}
     public Service() {this.nursery = new AnimalNursery<>();}
-    public boolean addToAnimalNursery(String name, LocalDate birtDate, Gender gender, TypeAnimal type) {
+    public boolean addToAnimalNursery(String name, LocalDate birtDate, Gender gender, TypeAnimal type, String command) {
 
-        Animal animal = new Animal(name ,gender, birtDate, type);
+        Animal animal = new Animal(name, gender, birtDate, type);
         animal.setId(genId++);
-        nursery.add(animal);
-        return true;
+        animal.addCommands(command);
+        return this.nursery.add(animal);
     }
     public Animal findByName(String name) {
         Animal  animal = nursery.getByName(name);
@@ -48,17 +48,17 @@ public class Service{
     }
     public boolean nurseryInFile(String nameFile){
         if(nameFile != null){
-            serializableToTree(nursery, nameFile);
+            serializableToTree( nameFile);
             return true;
         }else{
             return false;
         }  
     }
 
-    private  boolean serializableToTree(AnimalNursery<Animal> tr, String fileName){
+    private  boolean serializableToTree( String fileName){
         try {
             FileHandler fh = new FileHandler();
-            fh.save(tr, fileName);
+            fh.save(nursery, fileName);
             return true;
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,5 +1,6 @@
 package model.animalNursery;
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -12,8 +13,8 @@ import model.sortFamily.*;
 
 public class AnimalNursery<E extends LivingBeingInterf<E>> implements Serializable, Iterable<E>{
     private long count;
-    private  List<E> livingList;
-    public AnimalNursery(List<E> livingList){
+    private  ArrayList<E> livingList;
+    public AnimalNursery(ArrayList<E> livingList){
         this.livingList = livingList;
     }
     public AnimalNursery(){
@@ -22,13 +23,21 @@ public class AnimalNursery<E extends LivingBeingInterf<E>> implements Serializab
     public boolean add(E e){
         if(e == null){
             return false;
-        }if (!livingList.contains(e)) {
+        }if (!chekAnimal(e)) {
             livingList.add(e);
             e.setId(count++);
             return true;
         } 
         return false;
         
+    }
+    private boolean chekAnimal(E e){
+        for (Object elem : this) {
+            if (e.equals(elem)) {
+                return false;
+            }
+        }
+        return false;
     }
     public E getByName(String name){
         for (E person : this) {

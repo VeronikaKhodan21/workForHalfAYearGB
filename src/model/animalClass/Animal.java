@@ -3,7 +3,6 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
-
 import model.livingBegin.LivingBeingInterf;
 
 public class Animal implements LivingBeingInterf<Animal>, Comparable<Animal>{
@@ -22,7 +21,7 @@ public class Animal implements LivingBeingInterf<Animal>, Comparable<Animal>{
         this.gender= gender;
         this.birtDate = birtDate;
         this.type = type;        
-        this.commands = new ArrayList<String>();
+        this.commands =  new ArrayList<>();
     }
     public void setId(long id){this.id = id;}
     public void setGender(Gender gender){this.gender = gender;}
@@ -31,7 +30,14 @@ public class Animal implements LivingBeingInterf<Animal>, Comparable<Animal>{
     public Gender getGender(){return gender;}
 
     public boolean addCommands(String command){
-        return  commands.add(command);  
+        if(commands == null){
+            this.commands = new ArrayList<>();
+            return commands.add(command);
+        }else{
+            // List<String> list = new ArrayList<String>(Arrays.asList(command.split(",")));
+            commands.add(command);
+        }
+        return true;
     }
     // public  int  getId(){return id ;}
     public int getAge(){
@@ -41,15 +47,13 @@ public class Animal implements LivingBeingInterf<Animal>, Comparable<Animal>{
         Period diff = Period.between(birtDate, deatDate);
         return diff.getYears();
     }
+    public void  addCommandOneY(String command){
+        commands.add(command);
+        //return true;
+    }
     public String getCommands(){
-        if(commands == null){
-            return "Животное пока-что ничего не умеет...";
-        }else{
-        String str= new String(commands.get(0));
-        for (int i = 1; i <= commands.size() ; i++) {
-           str = str + ", "+ commands.get(i);
-        }
-        return str;}
+        return String.join(", ", this.commands);
+
     }
     public List<String> getCommandsList(){
         return this.commands;

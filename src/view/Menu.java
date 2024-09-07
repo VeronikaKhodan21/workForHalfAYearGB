@@ -10,13 +10,13 @@ public class Menu {
     public Menu(ConsoleUI consoleUI) {
         this.commands = new ArrayList<>();
         commands.add(new AddAnimalNursery(consoleUI));
-        commands.add(new GetAnimalNursery(consoleUI));
         commands.add(new SortByName(consoleUI));
         commands.add(new SortByBirthDate(consoleUI));
         commands.add(new SortByAge(consoleUI));
         commands.add(new SortByGenger(consoleUI));
         commands.add(new WriteTreeInFile(consoleUI));
         commands.add(new AddCommandAnimal(consoleUI));
+        commands.add(new ReadNursery(consoleUI));
         commands.add(new Finish(consoleUI));
     }
 

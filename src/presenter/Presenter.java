@@ -16,8 +16,13 @@ public class Presenter<E extends LivingBeingInterf> {
         this.view = view;
         service = new Service();
     }
-    public void addAnimalNursery(String name, LocalDate dob, Gender gender, TypeAnimal type) {
-        service.addToAnimalNursery(name, dob, gender, type);
+    public void addAnimalNursery(String name, LocalDate dob, Gender gender, TypeAnimal type, String command) {
+        boolean bol = service.addToAnimalNursery(name, dob, gender, type, command);
+        if(bol){
+            view.getAnswer("OK");
+        }else{
+            view.getAnswer("Ohhh...");
+        }
     }
     public void addCommandAnimal(String command, int id){
         service.addCommandAnimal(command, service.getById(id));
@@ -34,35 +39,21 @@ public class Presenter<E extends LivingBeingInterf> {
         }
     }
     public int checkSuzeNursery(){
-        return service.checkSuzeNursery();
+        return service.checkSuzeNursery()-1;
     }
     public void sortByName() {
         List<Animal> res = service.sortByName();
         this.printAnimalNursery(res);
     }
     
-    public void writeTreeFamily(String fileName) {
-        //service.treeInFile(fileName);
+    public void writeNursery(String fileName) {
+        service.nurseryInFile(fileName);
         if (service.nurseryInFile(fileName) ) {
-            view.getAnswer("Семья записана\n");
+            view.getAnswer("Питомник записан\n");
         } else {
-            view.getAnswer("Семья не записана\n");
+            view.getAnswer("Питомник не записан\n");
         }
     }
-    /* 
-    public void readNursery(String fileName) {
-        
-        AnimalNursery<Animal> nursery = service.nurseryInputFile(fileName); 
-        if (nursery != null) {
-            
-            for (Animal animal : nursery) {
-                view.getAnswer("\n"+animal.toString());
-            }
-        } else {
-            view.getAnswer("Не удалось установить семью...");
-        }
-    }
-    */
     public void readNursery(String filrName) {
         AnimalNursery<Animal> nursery = service.nurseryInputFile(filrName);
         if (nursery != null) {
@@ -85,5 +76,5 @@ public class Presenter<E extends LivingBeingInterf> {
     public void sortByAge() {
         List<Animal> res = service.sortByBirthDate();
         this.printAnimalNursery(res);
-    }
+    } 
 }
